@@ -16,18 +16,17 @@ const BlogPage = ({data}) => {
           </li>
         ))
       }
-      </ul>
       {
        data.allSitePage.nodes.map(node2 => (
         <li key={node2.id}>
-          <Link
-    to={node2.path}
-  >
-    {node2.id}
-  </Link>
+          <Link to={node2.path}>
+          {node2.id}
+          </Link>
         </li>
       ))
       }
+      </ul>
+      
     </Layout>
   )
 }
