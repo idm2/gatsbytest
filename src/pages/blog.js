@@ -8,43 +8,29 @@ import { Link } from "gatsby"
 const BlogPage = ({data}) => {
   return (
     <Layout pageTitle="My Blog Posts">
-      <ul>
-      {
-        data.allFile.nodes.map(node => (
-          <li key={node.name}>
-            {node.name}
-          </li>
+          {
+        data.allMdx.nodes.map((node) => (
+          <article key={node.id}>
+            <h2>{node.frontmatter.title}</h2>
+            <p>Posted: {node.frontmatter.date}</p>
+            <p>{node.excerpt}</p>
+          </article>
         ))
       }
-      </ul>
-      <ul>
-      {
-       data.site.siteMetadata.menuLinks.map(node => (
-        <li key={node.name}>
-          <Link to={node.link}>
-          {node.name}
-          </Link>
-        </li>
-      ))
-      } 
-      </ul>
     </Layout>
   )
 }
 
 export const query = graphql`
-query MyQuery {
-  allFile {
+query {
+  allMdx {
     nodes {
-      name
-    }
-  }
-  site {
-    siteMetadata {
-      menuLinks {
-        link
-        name
+      frontmatter {
+        date
+        title
       }
+      excerpt
+      id
     }
   }
 }
