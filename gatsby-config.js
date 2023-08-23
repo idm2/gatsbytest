@@ -5,6 +5,20 @@ module.exports = {
   siteMetadata: {
 	title: "IDM2 Gatsby Site",
     siteUrl: `http://localhost:8000/`,
+    menuLinks:[
+      {
+      name:'home',
+      link:'/'
+      },
+      {
+      name:'about',
+      link:'/about'
+      },
+      {
+        name:'blog',
+        link:'/blog'
+        }
+      ]
   },
    plugins: [
     "gatsby-plugin-image",
@@ -17,5 +31,6 @@ module.exports = {
         path: `${__dirname}/blog`,
       }
     },
+    "gatsby-plugin-mdx",
   ],
 };

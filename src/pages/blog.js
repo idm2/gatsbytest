@@ -16,15 +16,6 @@ const BlogPage = ({data}) => {
           </li>
         ))
       }
-      {
-       data.allSitePage.nodes.map(node2 => (
-        <li key={node2.id}>
-          <Link to={node2.path}>
-          {node2.id}
-          </Link>
-        </li>
-      ))
-      }
       </ul>
       
     </Layout>
@@ -33,12 +24,6 @@ const BlogPage = ({data}) => {
 
 export const query = graphql`
 query MyQuery {
-  allSitePage {
-    nodes {
-      id
-      path
-    }
-  }
   allFile {
     nodes {
       name

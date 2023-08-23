@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery, GatsbyNode } from 'gatsby'
 import {
   container,
   heading,
@@ -9,14 +9,32 @@ import {
   navLinkText
 } from './layout.module.css'
 
-
-
-const Layout = ({ pageTitle, children, data}) => {
+export const query = graphql`
+query MyQuery {
+  site {
+    siteMetadata {
+      menuLinks {
+        link
+        name
+      }
+    }
+  }
+}
+`
+const Layout = ({pageTitle, children, data}) => {
   return (
     <div className={container}>
       <nav>
         <ul className={navLinks}>
-    
+      {
+       data.site.siteMetadata.menuLinks.map(node => (
+        <li key={node.name}>
+          <Link to={node.link}>
+          {node.name}
+          </Link>
+        </li>
+      ))
+      } 
         </ul>
       </nav>
       <main>
@@ -26,8 +44,6 @@ const Layout = ({ pageTitle, children, data}) => {
     </div>
   )
 }
-
-
 
 
 export default Layout
