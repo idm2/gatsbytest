@@ -17,7 +17,17 @@ const BlogPage = ({data}) => {
         ))
       }
       </ul>
-      
+      <ul>
+      {
+       data.site.siteMetadata.menuLinks.map(node => (
+        <li key={node.name}>
+          <Link to={node.link}>
+          {node.name}
+          </Link>
+        </li>
+      ))
+      } 
+      </ul>
     </Layout>
   )
 }
@@ -27,6 +37,14 @@ query MyQuery {
   allFile {
     nodes {
       name
+    }
+  }
+  site {
+    siteMetadata {
+      menuLinks {
+        link
+        name
+      }
     }
   }
 }
